@@ -9,7 +9,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import kotlinx.android.synthetic.main.apps_item.view.*
 
-class PlayStoreAdapter(var listPlayStore: ArrayList<PlayStore>) :
+class PlayStoreAdapter(val listPlayStore: ArrayList<PlayStore>) :
     RecyclerView.Adapter<PlayStoreAdapter.ViewHolder>() {
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {}
@@ -24,13 +24,7 @@ class PlayStoreAdapter(var listPlayStore: ArrayList<PlayStore>) :
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val imageApp =holder.itemView.ivLogoApp
-
-        Glide.with(holder.itemView.context)
-            .load(listPlayStore[position].imageLogo)
-            .transform(RoundedCorners(40))
-            .into(imageApp)
-
+        Glide.with(holder.itemView.context).load(listPlayStore[position].imageLogo).into(holder.itemView.ivLogoApp)
         holder.itemView.tvNameApp.setText(listPlayStore[position].namaApp)
         holder.itemView.tvSizeApp.setText(listPlayStore[position].sizeApp)
     }

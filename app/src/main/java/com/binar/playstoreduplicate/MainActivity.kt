@@ -2,7 +2,6 @@ package com.binar.playstoreduplicate
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -10,7 +9,8 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
+        this.supportActionBar?.hide()
+// aplikasi
         val learningAppCategory = arrayListOf(
             PlayStore("Zenius ","24 MB",R.drawable.zenius),
             PlayStore("Quipper","24 Mb",R.drawable.quipper),
@@ -19,7 +19,7 @@ class MainActivity : AppCompatActivity() {
             PlayStore("Skill Academy","24 Mb",R.drawable.skil_academy),
             PlayStore("Mezzu 9","24 Mb",R.drawable.mezza)
         )
-        val gameAppCategory = arrayListOf(
+        val sportAppCategory = arrayListOf(
             PlayStore("All Football","24 Mb",R.drawable.all_football),
             PlayStore("365 Scores","24 Mb",R.drawable.tiga_enam_lima_scores),
             PlayStore("Bein Sports","24 Mb",R.drawable.bein_sport),
@@ -55,20 +55,20 @@ class MainActivity : AppCompatActivity() {
             PlayStore("LindungiPeduli","24 Mb",R.drawable.lindungipeduli)
         )
 
-        learningAppRecycle.layoutManager = LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false)
-        learningAppRecycle.adapter = PlayStoreAdapter(learningAppCategory)
+        val listKategori = arrayListOf(
+            CategoryData("Learning App",learningAppCategory),
+            CategoryData("Sport App",sportAppCategory),
+            CategoryData("Music App",musicAppCategory),
+            CategoryData("Movie App",movieAppCategory),
+            CategoryData("Health App",healthAppCategory)
+        )
 
-        gamingAppRecycle.layoutManager = LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false)
-        gamingAppRecycle.adapter = PlayStoreAdapter(gameAppCategory)
+        val adapterKategori = CategoryAdapter(listKategori)
+        rvNamecategory.adapter = adapterKategori
+        val layoutLinearCategory = LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false)
+        rvNamecategory.layoutManager = layoutLinearCategory
 
-        musicAppRecycle.layoutManager = LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false)
-        musicAppRecycle.adapter = PlayStoreAdapter(musicAppCategory)
 
-        movieAppRecycle.layoutManager = LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false)
-        movieAppRecycle.adapter = PlayStoreAdapter(movieAppCategory)
-
-        healthAppRecycle.layoutManager = LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false)
-        healthAppRecycle.adapter = PlayStoreAdapter(healthAppCategory)
 
     }
 }
